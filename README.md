@@ -19,3 +19,4 @@ MyModule::PharmacyLedger
 ### `register_pharmacy(admin: &signer, name: string::String, license_id: string::String)`
 
 Registers a new verified pharmacy with a name and license ID. The signer (admin) becomes the owner of the record.
+"transaction_hash": "0xcc8f3daea5013abb80df8409bb1e3dc10ef6232283ba37f0c297def35a7b162b"
