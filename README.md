@@ -1,30 +1,21 @@
-module MyModule::PharmacyLedger {
+# Online Pharmacy Verification Ledger
 
-    use std::signer;
-    use std::string;
-    use std::vector;
+This is a simple Aptos Move smart contract that acts as a decentralized ledger to register and verify online pharmacies.
 
-    /// Struct representing a verified pharmacy
-    struct Pharmacy has key, store {
-        name: string::String,
-        license_id: string::String,
-    }
+## Overview
 
-    /// Function to register a verified pharmacy
-    public fun register_pharmacy(admin: &signer, name: string::String, license_id: string::String) {
-        let addr = signer::address_of(admin);
+The smart contract allows:
+- **Registration of a verified pharmacy** by an admin.
+- **Public verification** to check if a given address belongs to a registered pharmacy.
 
-        assert!(!exists<Pharmacy>(addr), 1); // Prevent re-registration
+## Module Name
 
-        let pharmacy = Pharmacy {
-            name,
-            license_id,
-        };
-        move_to(admin, pharmacy);
-    }
+```
+MyModule::PharmacyLedger
+```
 
-    /// Function to check if an address is a registered pharmacy
-    public fun is_pharmacy_verified(pharmacy_addr: address): bool {
-        exists<Pharmacy>(pharmacy_addr)
-    }
-}
+## Functions
+
+### `register_pharmacy(admin: &signer, name: string::String, license_id: string::String)`
+
+Registers a new verified pharmacy with a name and license ID. The signer (admin) becomes the owner of the record.
